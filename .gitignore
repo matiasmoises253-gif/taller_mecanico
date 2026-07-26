@@ -1,0 +1,5 @@
+node_modules/
+.env
+scripts/reporte_datos.json
+scripts/reporte_output.xlsx
+scripts/reporte_output.docx
