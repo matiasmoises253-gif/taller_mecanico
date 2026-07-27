@@ -1,6 +1,6 @@
 // shared.js — Funciones compartidas por todas las páginas del sistema
 // URL base de tu servidor en Railway
-const BASE_URL = 'https://TU-APP.up.railway.app';
+const BASE_URL = 'https://tallermecanico-production-e069.up.railway.app';
 
 function toggleMenu() {
   document.querySelector('.sidebar').classList.toggle('abierto');
