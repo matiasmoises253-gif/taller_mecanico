@@ -22,7 +22,11 @@ function getToken() {
 }
 
 // Fetch autenticado — agrega el token automáticamente a todas las peticiones
+// Fetch autenticado — agrega el token automáticamente a todas las peticiones
 function apiFetch(url, options = {}) {
+  if (url.startsWith('http://localhost:3000')) {
+    url = url.replace('http://localhost:3000', BASE_URL);
+  }
   options.headers = options.headers || {};
   options.headers['Authorization'] = 'Bearer ' + getToken();
   options.headers['Content-Type'] = options.headers['Content-Type'] || 'application/json';
