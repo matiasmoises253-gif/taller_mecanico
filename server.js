@@ -14,11 +14,11 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(express.static('public'));
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME 
+  host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
+  port: process.env.MYSQLPORT || process.env.DB_PORT || 3306,
+  user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
+  password: process.env.MYSQLPASSWORD || process.env.DB_PASS || '',
+  database: process.env.MYSQLDATABASE || process.env.DB_NAME || 'taller_mecanico'
 });
 
 // Middleware para verificar token JWT
@@ -575,4 +575,5 @@ app.put('/perfil', (req, res) => {
   );
 });
 
-app.listen(3000, () => console.log('Servidor corriendo en http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
