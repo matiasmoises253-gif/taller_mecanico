@@ -81,7 +81,7 @@
       const usuario = document.getElementById('usuario').value;
       const password = document.getElementById('password').value;
 
-      const res = await fetch('https://tallermecanico-production-e069.up.railway.app/api/login', {
+      const res = await fetch('https://tallermecanico-production-e069.up.railway.app/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ usuario, password })
