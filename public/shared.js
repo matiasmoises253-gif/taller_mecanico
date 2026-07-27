@@ -32,7 +32,6 @@ function apiFetch(url, options = {}) {
   options.headers['Content-Type'] = options.headers['Content-Type'] || 'application/json';
   return fetch(url, options);
 }
-
 // ── Protección de rutas ──────────────────────────────────────────────────────
 function verificarSesion() {
   const token = getToken();
