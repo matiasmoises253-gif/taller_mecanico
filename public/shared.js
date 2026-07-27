@@ -1,4 +1,6 @@
 // shared.js — Funciones compartidas por todas las páginas del sistema
+// URL base de tu servidor en Railway
+const BASE_URL = 'https://TU-APP.up.railway.app';
 
 function toggleMenu() {
   document.querySelector('.sidebar').classList.toggle('abierto');
@@ -11,7 +13,7 @@ function toggleUserMenu() {
 
 function cerrarSesion() {
   localStorage.clear();
-  location.href = 'http://localhost/taller-mecanico/public/login.php';
+  location.href = '/login.php';
 }
 
 // ── Token JWT ────────────────────────────────────────────────────────────────
@@ -31,7 +33,7 @@ function apiFetch(url, options = {}) {
 function verificarSesion() {
   const token = getToken();
   if (!token) {
-    location.href = 'http://localhost/taller-mecanico/public/login.php';
+    location.href = '/login.php';
     return false;
   }
   // Verificar que el token no haya expirado (decodificamos el payload sin librería)
@@ -39,12 +41,12 @@ function verificarSesion() {
     const payload = JSON.parse(atob(token.split('.')[1]));
     if (payload.exp && Date.now() / 1000 > payload.exp) {
       localStorage.clear();
-      location.href = 'http://localhost/taller-mecanico/public/login.php';
+      location.href = '/login.php';
       return false;
     }
   } catch (e) {
     localStorage.clear();
-    location.href = 'http://localhost/taller-mecanico/public/login.php';
+    location.href = '/login.php';
     return false;
   }
   return true;
@@ -80,7 +82,7 @@ async function aplicarPermisosMenu(rol) {
 
   let permisos;
   try {
-    const data = await apiFetch(`http://localhost:3000/permisos/${encodeURIComponent(rol)}`).then(r => r.json());
+    const data = await apiFetch(`${BASE_URL}/permisos/${encodeURIComponent(rol)}`).then(r => r.json());
     permisos = data.permisos;
     localStorage.setItem(cacheKey, JSON.stringify(permisos));
   } catch (e) {
@@ -104,7 +106,7 @@ function mostrarPermisosEnMenu(permisos) {
 
 async function cargarDatosSidebar() {
   try {
-    const datos = await apiFetch('http://localhost:3000/perfil').then(r => r.json());
+    const datos = await apiFetch(`${BASE_URL}/perfil`).then(r => r.json());
     const elNombre = document.getElementById('sidebarNombre');
     const elCiudad = document.getElementById('sidebarCiudad');
     if (elNombre && datos.nombre) elNombre.textContent = datos.nombre;
