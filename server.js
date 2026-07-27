@@ -54,11 +54,10 @@ db.connect((err) => {
   // Insertar fila inicial si no existe
   db.query(`INSERT IGNORE INTO perfil_taller (id, nombre, ciudad) VALUES (1, 'Multiservicios Cárdenas', 'Chincha Alta')`);
   // Agregar columna imagen a vehiculos si no existe
-  db.query(`ALTER TABLE vehiculos ADD COLUMN IF NOT EXISTS imagen LONGTEXT`);
-  // Agregar columna costo a ordenes si no existe
-  db.query(`ALTER TABLE ordenes ADD COLUMN IF NOT EXISTS costo DECIMAL(10,2) DEFAULT 0`);
-  db.query(`ALTER TABLE ordenes ADD COLUMN IF NOT EXISTS mano_obra DECIMAL(10,2) DEFAULT 0`);
-  db.query(`ALTER TABLE ordenes ADD COLUMN IF NOT EXISTS costo_repuestos DECIMAL(10,2) DEFAULT 0`);
+  db.query(`ALTER TABLE vehiculos ADD COLUMN IF NOT EXISTS imagen LONGTEXT`, (err) => { if (err) console.log('Aviso (imagen):', err.message); });
+db.query(`ALTER TABLE ordenes ADD COLUMN IF NOT EXISTS costo DECIMAL(10,2) DEFAULT 0`, (err) => { if (err) console.log('Aviso (costo):', err.message); });
+db.query(`ALTER TABLE ordenes ADD COLUMN IF NOT EXISTS mano_obra DECIMAL(10,2) DEFAULT 0`, (err) => { if (err) console.log('Aviso (mano_obra):', err.message); });
+db.query(`ALTER TABLE ordenes ADD COLUMN IF NOT EXISTS costo_repuestos DECIMAL(10,2) DEFAULT 0`, (err) => { if (err) console.log('Aviso (costo_repuestos):', err.message); });
   db.query(`CREATE TABLE IF NOT EXISTS gastos_inventario (id INT AUTO_INCREMENT PRIMARY KEY, inventario_id INT, nombre VARCHAR(120), cantidad_agregada INT, costo_compra DECIMAL(10,2), fecha DATETIME DEFAULT CURRENT_TIMESTAMP)`);
   // Repuestos del inventario usados en cada orden (permite seleccionar del inventario en vez de escribir el monto a mano)
   db.query(`CREATE TABLE IF NOT EXISTS orden_repuestos (id INT AUTO_INCREMENT PRIMARY KEY, orden_id INT, inventario_id INT, nombre VARCHAR(150), cantidad INT, precio_unitario DECIMAL(10,2), subtotal DECIMAL(10,2))`);
