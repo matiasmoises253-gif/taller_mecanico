@@ -13,7 +13,7 @@
     <div class="topbar">
       <button class="menu-btn" onclick="toggleMenu()">☰</button>
       <span style="font-size:14px;color:#555">Bienvenido al panel de control</span>
-      <button class="btn-primary" style="margin-left:auto" onclick="location.href='http://localhost/taller-mecanico/public/ordenes.php'">+ Nueva Orden de Trabajo</button>
+      <button class="btn-primary" style="margin-left:auto" onclick="location.href='ordenes.php'">+ Nueva Orden de Trabajo</button>
     </div>
     <div class="content">
       <h1>Resumen Operacional</h1>
@@ -59,7 +59,7 @@
       <div class="panel">
         <div class="panel-title">
           Actividades Recientes
-          <span class="panel-link" onclick="location.href='http://localhost/taller-mecanico/public/ordenes.php'">Ver Todo</span>
+          <span class="panel-link" onclick="location.href='ordenes.php'">Ver Todo</span>
         </div>
         <table>
           <thead><tr><th>ORDEN</th><th>CLIENTE</th><th>VEHÍCULO</th><th>ESTADO</th><th>FECHA</th></tr></thead>
