@@ -92,7 +92,7 @@
         localStorage.setItem('usuario', data.nombre);
         localStorage.setItem('rol', data.rol);
         localStorage.setItem('token', data.token);
-        window.location.href = 'http://localhost/taller-mecanico/public/dashboard.php';
+        window.location.href = 'dashboard.php';
       } else {
         document.getElementById('error').style.display = 'block';
       }
